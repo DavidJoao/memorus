@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  password     String
+  name         String
+  username     String
+  dateCreated  DateTime @default(now())
+  lastActivity DateTime?
+  images       Image[]
+  posts        Post[]   @relation("PostAuthor")
+  likedPosts   Post[]   @relation("PostUsers")
+  likes        Like[]
+  followers    Follower[] @relation("UserFollowers")
+  following    Follower[] @relation("UserFollowing")
+}
+model Follower {
+  id          String @id @default(uuid())
+  followerId  String
+  followingId String
+  follower    User   @relation("UserFollowing", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User   @relation("UserFollowers", fields: [followingId], references: [id], onDelete: Cascade)
+}
+
+model Post {
+  id          String   @id @default(uuid())
+  authorId    String
+  author      User     @relation("PostAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  images      Image[]
+  users       User[]   @relation("PostUsers")
+  dateCreated DateTime @default(now())
+  isPublic    Boolean  @default(true)
+  likes       Like[]
+}
+
+model Image {
+  id          String   @id @default(uuid())
+  authorId    String
+  postId      String?
+  author      User     @relation(fields: [authorId], references: [id])
+  post        Post?    @relation(fields: [postId], references: [id])
+  link        String
+  dateCreated DateTime @default(now())
+}
+
+model Like {
+  id      String @id @default(uuid())
+  postId  String
+  userId  String
+  post    Post   @relation(fields: [postId], references: [id])
+  user    User   @relation(fields: [userId], references: [id])
+}
