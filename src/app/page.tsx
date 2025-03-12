@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { useEffect } from "react"
 import axios from "axios"
+import Memorus from "@/app/components/general/Memorus"
 
 export default function Home() {
 
@@ -14,7 +15,7 @@ export default function Home() {
 
 	return (
         <div className="flex flex-col items-center justify-center gap-3  min-h-screen page-bg p-3">
-            <h1 className="text-[45px] lg:text-[65px] font-bold bg-gradient-to-r from-stone-600 to-stone-400 bg-clip-text text-transparent">MemorUs</h1>
+            <Memorus />
             <h2 className="text-black dark:text-neutral-300 font-semibold text-xl text-center">Your memories, our story.</h2>
             <div className="flex flex-row gap-2">
                 <Link href={"/signin"} className="black-button w-[100px]">Sign In</Link>

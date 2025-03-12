@@ -15,4 +15,7 @@ body {
   .page-bg {
     @apply bg-neutral-100 dark:bg-neutral-900
   }
+  .input {
+    @apply bg-neutral-200 rounded p-1
+  }
 }
