@@ -14,7 +14,6 @@ const SignupForm = () => {
     }
     
     const [form, setForm] = useState(initialForm)
-    const [message, setMessage] = useState("")
 
     const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -54,7 +53,6 @@ const SignupForm = () => {
 
             <div className="col-span-2">
                 <button className="white-button w-full">Signup</button>
-                <p>{message}</p>
             </div>
 
 		</form>
