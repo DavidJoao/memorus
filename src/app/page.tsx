@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useEffect } from "react"
 import axios from "axios"
-import Memorus from "@/app/components/general/Memorus"
+import Memorus from "@/components/general/Memorus"
 
 export default function Home() {
 

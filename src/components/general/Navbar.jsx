@@ -1,5 +1,5 @@
 import React from 'react'
-import ToggleTheme from "@/app/components/general/ToggleTheme"
+import ToggleTheme from "@/components/general/ToggleTheme"
 
 const Navbar = () => {
   return (
